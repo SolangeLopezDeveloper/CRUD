@@ -6,19 +6,19 @@ const router = express.Router();
 const productsController = require('../controllers/productsController');
 
 /*** GET ALL PRODUCTS ***/ 
-router.get('/products/', productsController.index); 
+router.get('/', productsController.products); 
 
 /*** CREATE ONE PRODUCT ***/ 
-router.get('/create/', productsController.create); 
-router.post('/', productsController.store); 
+router.get('/create', productsController.create); 
+router.post('/create', productsController.store); 
 
 
 /*** GET ONE PRODUCT ***/ 
 router.get('/detail/:id', productsController.detail); 
 
 /*** EDIT ONE PRODUCT ***/ 
-router.get('/edit/:id/', productsController.edit); 
-router.put('/update/:id', productsController.update); 
+router.get('/edit/:id', productsController.edit); 
+router.put('/edit/:id', productsController.update); 
 
 
 /*** DELETE ONE PRODUCT***/ 

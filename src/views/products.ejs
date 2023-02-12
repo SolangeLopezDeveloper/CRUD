@@ -1,4 +1,4 @@
-«<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
 <%- include('partials/head', {title: 'Todos los productos'}) %>
@@ -13,8 +13,16 @@
 			<div class="col-12">
 				<h2 class="products-title">Todos los productos</h2>
 			</div>
-		
-			<%- include('./partials/productForEach') %>
+		<% products.forEach(({id, name, price, image, discount}) => { %>
+			<%- include('./partials/productArticulo',{
+				id,
+				image,
+				price,
+				discount,
+				name
+			} )%> 
+		<% }) %>
+			
 		
 		</div>
 	</div>

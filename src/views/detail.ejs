@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Detalle' }) %>
+<%- include('partials/head', { title: 'name' }) %>
 <body>
 	<!-- Header -->
 	<%- include('partials/headerNavbar') %>
@@ -11,34 +11,36 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Detalle del producto: name </h2>
+				<h2 class="products-title">Detalle del producto: <%= name%></h2>
 			</div>
 		</div>
 	
 			<div class="product-detail">
 				<div class="row">
 					<div class="col-12 col-lg-8">
-						<img src="/images/products/" alt="product image" class="product-detail-img">
+						<img src="/images/products/<%= image ? image : 'default-image.png' %>" alt="product image" class="product-detail-img">
 						<p class="product-detail-description">
 						 
 						</p>
 					</div>
 					<div class="col-12 col-lg-4">
 						<article class="product-detail-info">
-							<h2 class="product-detail-title">nombre del producto</h2>
-							
+							<h2 class="product-detail-title"><%= name %></h2>
+							<% if (discount > 0) { %>
 								<p class="product-detail-price small">
-									<span>precio</span>
-									/
+									<span>$<%= toThousand(price) %></span>
+									/<%= discount %>
 									% OFF
 								</p>
 								<p class="product-detail-price">
-									precio
-								</p>
-								<p class="product-detail-price">
-									% OFF
-								</p>
-	
+									
+										$<%= toThousand(price * ((100-discount)/100)) %>
+									</p>
+								   <% } else { %>
+									<p class="product-detail-price">
+									   $<%= toThousand(price) %>
+									</p>
+								<% } %>
 		
 		
 						<ul class="actions-list">
@@ -55,8 +57,8 @@
 						<a href="#" class="buy-now-button">COMPRAR AHORA</a>
 						<hr>
 
-						<a href="/products/edit/:id" class="action-button edit">EDITAR PRODUCTO</a>
-						<form action="/products/delete/:id" method="POST" style="display: inline-flex">
+						<a href="/products/edit/<%= id %>" class="action-button edit">EDITAR PRODUCTO</a>
+						<form action="/products/delete/<%= id %>?_method=DELETE" method="POST" style="display: inline-flex">
 							<button type="submit" class="action-button delete">ELIMINAR</button>
 						</form>
 					</article>
@@ -65,7 +67,7 @@
 		</div>
 	</div>
 	<!-- /product detail -->
-
+ <p class="product-detail-description"><%= description %></p> 
 	<!-- footer -->
 	<%- include('partials/footer') %>
 	<!-- /footer -->

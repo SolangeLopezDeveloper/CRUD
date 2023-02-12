@@ -19,7 +19,16 @@
 						<h2 class="products-title">Basado en tu última visita</h2>
 					</div>
 					<!-- Show the "visited" products -->
-					<%- include('./partials/productForEach.ejs') %>
+					<% visited.forEach(({id,image,price,discount,name})=> { %>
+						<%- include('./partials/productArticulo',{
+							id,
+							image,
+							price,
+							discount,
+							name
+						} )%> 
+					
+						<% }) %>
 				</div>
 			</div>
 			<!-- /ultima visita -->
@@ -31,7 +40,15 @@
 						<h2 class="products-title">Ofertas</h2>
 					</div>
 					<!-- Show the "in-sale" products -->
-					<%- include('./partials/productForEach.ejs') %> 
+					<% insale.forEach(({id,image,price,discount,name})=> { %>
+						<%- include('./partials/productArticulo',{
+							id,
+							image,
+							price,
+							discount,
+							name
+						} )%> 
+						<% }) %>
 			</div>
 			</div>
 			<!-- /Ofertas -->
