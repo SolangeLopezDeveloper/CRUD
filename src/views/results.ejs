@@ -27,8 +27,8 @@
 									<img src="/images/products/<%= image %>" alt="imagen de producto">
 								</figure>
 								<article class="product-box_data">
-									<h2>$<% if (discount > 0) { %>
-										<%= price * ((100-discount)/100) %>
+									<h2><% if (discount > 0) { %>
+										$<%= price * ((100-discount)/100) %>
 									  
 								   <% } else { %>
 									   $<%= price %>

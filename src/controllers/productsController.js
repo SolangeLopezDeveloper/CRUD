@@ -7,6 +7,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
  
 
+
 const controller = {
 	// Root - Show all products
 	
@@ -21,6 +22,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
+
 		const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 		const {id} = req.params;
@@ -37,23 +39,26 @@ return res.render('detail', {
 	create: (req, res) => {
 		return res.render('product-create-form'
 		)
-	},
+	}, 
 	
 	// Create -  Method to store
 	store: (req, res) => {
 
-
+		
 		const {name, price, discount, category,description}=req.body;
 
 		 const nuevoProducto = {
 			id: products[products.length - 1].id +1,
-			name: name.trim(),
-			description: description.trim(),
+			name,
+			description,
 			price: +price,
 			discount: +discount,
-			image: null,
+			image : req.file ? req.file.filename : null,
 			category
 			};
+		
+				
+				
 		 products.push(nuevoProducto);
 
 		 fs.writeFileSync(productsFilePath,JSON.stringify(products, null, 3),'utf-8')
@@ -120,6 +125,11 @@ return res.render('detail', {
 		return res.redirect('/products')
 
 	}
-};
+
+}
+  
+    
+  
 
 module.exports = controller;
+
