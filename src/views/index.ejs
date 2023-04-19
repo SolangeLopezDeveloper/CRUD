@@ -19,7 +19,7 @@
 						<h2 class="products-title">Basado en tu última visita</h2>
 					</div>
 					<!-- Show the "visited" products -->
-					<% visited.forEach(({id,image,price,discount,name})=> { %>
+					<% newest.forEach(({id,image,price,discount,name})=> { %>
 						<%- include('./partials/productArticulo',{
 							id,
 							image,
